@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+.storybook
+storybook-static
+vite.config.ts
+tailwind.config.js
+postcss.config.js
+.pnpm-store
+*.config.js
+*.config.ts
