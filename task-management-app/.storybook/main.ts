@@ -1,6 +1,7 @@
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import type { StorybookConfig } from '@storybook/react-vite'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -13,18 +14,30 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (config) => {
+    // ✅ إصلاح المسارات (aliases) تلقائياً بناءً على tsconfig
+    config.plugins = [...(config.plugins || []), tsconfigPaths()]
+
     config.resolve = {
       ...config.resolve,
       alias: {
         ...config.resolve?.alias,
         '@': resolve(__dirname, '../src'),
-        '@/components': resolve(__dirname, '../src/components'),
-        '@/features': resolve(__dirname, '../src/features'),
-        '@/lib': resolve(__dirname, '../src/lib'),
-        '@/styles': resolve(__dirname, '../src/styles'),
-        '@/mocks': resolve(__dirname, '../src/mocks'),
       },
     }
+
+    // ✅ أهم خطوة: خلي esbuild يعرف يقرأ TypeScript Generics داخل JSX
+    config.esbuild = {
+      ...config.esbuild,
+      loader: 'tsx',
+      jsx: 'automatic',
+      tsconfigRaw: {
+        compilerOptions: {
+          jsx: 'react-jsx',
+          target: 'ESNext',
+        },
+      },
+    }
+
     return config
   },
 }
