@@ -1,28 +1,29 @@
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
 import type { StorybookConfig } from '@storybook/react-vite'
-import path from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-a11y',
-    // Remove addon-essentials temporarily to avoid version conflicts
-  ],
+  addons: ['@storybook/addon-links', '@storybook/addon-a11y'],
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
   viteFinal: async (config) => {
-    if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@': path.resolve(__dirname, '../src'),
-        '@/components': path.resolve(__dirname, '../src/components'),
-        '@/features': path.resolve(__dirname, '../src/features'),
-        '@/lib': path.resolve(__dirname, '../src/lib'),
-        '@/styles': path.resolve(__dirname, '../src/styles'),
-        '@/mocks': path.resolve(__dirname, '../src/mocks'),
-      }
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        '@': resolve(__dirname, '../src'),
+        '@/components': resolve(__dirname, '../src/components'),
+        '@/features': resolve(__dirname, '../src/features'),
+        '@/lib': resolve(__dirname, '../src/lib'),
+        '@/styles': resolve(__dirname, '../src/styles'),
+        '@/mocks': resolve(__dirname, '../src/mocks'),
+      },
     }
     return config
   },
