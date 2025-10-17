@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Search, Mail, Lock, User } from 'lucide-react'
+import { Search, Mail, Lock, User, AlertCircle } from 'lucide-react'
+import { useState } from 'react'
+import { prefault, z } from 'zod'
 import Input from './Input'
+import React from 'react'
 
 const meta = {
   title: 'UI/Input',
@@ -100,6 +103,82 @@ export const Date: Story = {
   args: {
     label: 'Due Date',
     type: 'date',
+  },
+}
+
+// Zod Validation Example
+const emailSchema = z.string().email('Invalid email address')
+
+const EmailValidationWrapper = () => {
+  const [email, setEmail] = React.useState('')
+  const [error, setError] = React.useState<string>('')
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setEmail(value)
+    const result = emailSchema.safeParse(value)
+    setError(result.success ? '' : result.error.errors[0].message)
+  }
+
+  return (
+    <Input
+      label="Email (with Zod validation)"
+      placeholder="Enter your email"
+      type="email"
+      value={email}
+      onChange={handleChange}
+      error={error}
+      leftIcon={<Mail className="h-4 w-4" />}
+      rightIcon={
+        error ? <AlertCircle className="h-4 w-4 text-red-500" /> : undefined
+      }
+    />
+  )
+}
+
+export const WithZodValidation = {
+  render: () => <EmailValidationWrapper />,
+}
+
+const passwordSchema = z
+  .string()
+  .min(8, 'Password must be at least 8 characters')
+  .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+  .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+  .regex(/[0-9]/, 'Password must contain at least one number')
+
+export const ComplexZodValidation: Story = {
+  render: () => {
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState<string | undefined>()
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value
+      setPassword(value)
+
+      const result = passwordSchema.safeParse(value)
+      setError(result.success ? undefined : result.error.errors[0].message)
+    }
+
+    return (
+      <Input
+        label="Password (Complex validation)"
+        type="password"
+        placeholder="Enter strong password"
+        value={password}
+        onChange={handleChange}
+        error={error}
+        helperText={
+          !error ? 'Min 8 chars with uppercase, lowercase & number' : undefined
+        }
+        leftIcon={<Lock className="h-4 w-4" />}
+        rightIcon={
+          error ? (
+            <AlertCircle className="h-4 w-4 text-danger-500" />
+          ) : undefined
+        }
+      />
+    )
   },
 }
 
