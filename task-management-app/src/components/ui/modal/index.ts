@@ -1,6 +1,25 @@
-export { default as Modal } from './Modal'
-export { ModalHeader } from './ModalHeader'
-export { ModalTitle } from './ModalTitle'
-export { ModalDescription } from './ModalDescription'
-export { ModalBody } from './ModalBody'
-export { ModalFooter } from './ModalFooter'
+import Modal from './Modal'
+import { ModalHeader } from './ModalHeader'
+import { ModalTitle } from './ModalTitle'
+import { ModalDescription } from './ModalDescription'
+import { ModalBody } from './ModalBody'
+import { ModalFooter } from './ModalFooter'
+
+export {
+  Modal,
+  ModalHeader,
+  ModalTitle,
+  ModalDescription,
+  ModalBody,
+  ModalFooter,
+}
+
+// ✅ export default object for convenience
+export default {
+  Modal,
+  ModalHeader,
+  ModalTitle,
+  ModalDescription,
+  ModalBody,
+  ModalFooter,
+}
