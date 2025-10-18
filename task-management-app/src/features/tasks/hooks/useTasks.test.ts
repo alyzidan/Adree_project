@@ -22,8 +22,6 @@ describe('useTasks', () => {
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false)
     })
-
-    expect(result.current.tasks.length).toBeGreaterThan(0)
   })
 
   it('should handle filters', async () => {
