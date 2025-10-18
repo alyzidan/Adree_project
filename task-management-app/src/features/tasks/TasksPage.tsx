@@ -7,7 +7,6 @@ import TaskFilters from './components/TaskFilters'
 import TaskSearch from './components/TaskSearch'
 import TaskSort from './components/TaskSort'
 import TaskModal from './components/TaskModal'
-import { Toaster } from '@/components/ui/toast/Toaster'
 import { useTasks } from './hooks'
 import Badge from '@/components/ui/badge/Badge'
 
@@ -23,62 +22,60 @@ function TasksPage() {
     filters.search
 
   return (
-    <>
-      <Container>
-        <div className="space-y-6">
-          {/* Header */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-3xl font-bold text-neutral-900">Tasks</h1>
-                <Badge variant="primary">{total}</Badge>
-              </div>
-              <p className="mt-2 text-neutral-600">
-                Manage and track your tasks efficiently
-              </p>
+    <Container>
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold text-neutral-900">Tasks</h1>
+              <Badge variant="primary">{total}</Badge>
             </div>
-            <Button
-              leftIcon={<Plus className="h-4 w-4" />}
-              onClick={() => setIsCreateModalOpen(true)}
-            >
-              <span className="hidden sm:inline">Add Task</span>
-              <span className="sm:hidden">Add</span>
-            </Button>
+            <p className="mt-2 text-neutral-600">
+              Manage and track your tasks efficiently
+            </p>
           </div>
-
-          {/* Search Bar */}
-          <TaskSearch />
-
-          {/* Filters Toggle (Mobile) */}
-          <div className="flex items-center justify-between lg:hidden">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowFilters(!showFilters)}
-              leftIcon={<SlidersHorizontal className="h-4 w-4" />}
-            >
-              Filters {hasActiveFilters && '(Active)'}
-            </Button>
-            <TaskSort />
-          </div>
-
-          {/* Filters (Desktop) & Sort */}
-          <div className="hidden items-center justify-between lg:flex">
-            <TaskFilters />
-            <TaskSort />
-          </div>
-
-          {/* Filters (Mobile - Collapsible) */}
-          {showFilters && (
-            <div className="lg:hidden">
-              <TaskFilters />
-            </div>
-          )}
-
-          {/* Tasks List */}
-          <TaskList />
+          <Button
+            leftIcon={<Plus className="h-4 w-4" />}
+            onClick={() => setIsCreateModalOpen(true)}
+          >
+            <span className="hidden sm:inline">Add Task</span>
+            <span className="sm:hidden">Add</span>
+          </Button>
         </div>
-      </Container>
+
+        {/* Search Bar */}
+        <TaskSearch />
+
+        {/* Filters Toggle (Mobile) */}
+        <div className="flex items-center justify-between lg:hidden">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowFilters(!showFilters)}
+            leftIcon={<SlidersHorizontal className="h-4 w-4" />}
+          >
+            Filters {hasActiveFilters && '(Active)'}
+          </Button>
+          <TaskSort />
+        </div>
+
+        {/* Filters (Desktop) & Sort */}
+        <div className="hidden items-center justify-between lg:flex">
+          <TaskFilters />
+          <TaskSort />
+        </div>
+
+        {/* Filters (Mobile - Collapsible) */}
+        {showFilters && (
+          <div className="lg:hidden">
+            <TaskFilters />
+          </div>
+        )}
+
+        {/* Tasks List */}
+        <TaskList />
+      </div>
 
       {/* Create Task Modal */}
       <TaskModal
@@ -86,10 +83,7 @@ function TasksPage() {
         onOpenChange={setIsCreateModalOpen}
         mode="create"
       />
-
-      {/* Toast Notifications */}
-      <Toaster />
-    </>
+    </Container>
   )
 }
 

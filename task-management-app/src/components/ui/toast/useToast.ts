@@ -175,3 +175,9 @@ export function useToast() {
     dismiss: (toastId?: string) => dispatch({ type: 'DISMISS_TOAST', toastId }),
   }
 }
+
+export function clearAllToasts() {
+  dispatch({ type: 'REMOVE_TOAST' })
+  toastTimeouts.forEach((timeout) => clearTimeout(timeout))
+  toastTimeouts.clear()
+}
