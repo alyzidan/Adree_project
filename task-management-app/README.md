@@ -105,13 +105,40 @@ src/
 - [x] Routing with lazy loading
 - [x] Layout components
 - [x] CI/CD pipeline
-- [ ] Design system components
-- [ ] State management (Zustand)
+- [x] Design system components
+- [x] State management (Zustand)
 - [ ] Mock API (MSW)
 - [ ] Tasks CRUD functionality
 - [ ] Dashboard & charts
 - [ ] Testing (Vitest + Cypress)
 - [ ] Storybook documentation
+
+## State Management
+
+### Zustand Store
+
+- **Location:** `src/features/tasks/store.ts`
+- **Features:**
+  - Centralized state for tasks
+  - CRUD operations
+  - Filtering, sorting, pagination
+  - Optimistic updates
+  - Error handling
+  - DevTools integration
+
+### Custom Hooks
+
+- `useTasks()` - Main hook for fetching and managing tasks
+- `useTaskFilters()` - Debounced search and filter management
+- `useTaskMutations()` - CRUD operations with toast notifications
+
+### Mock API (MSW)
+
+- **Location:** `src/mocks/`
+- Mock Service Worker intercepts HTTP requests
+- 30 sample tasks with realistic data
+- Simulates network delay (500ms)
+- Full CRUD support with in-memory storage
 
 # Code Quality
 
