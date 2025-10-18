@@ -8,6 +8,8 @@ import {
   TableHead,
   TableCell,
   TableCaption,
+  TableCard,
+  TableCardRow,
 } from './index'
 import Badge from '../badge/Badge'
 import Button from '../button/Button'
@@ -107,6 +109,95 @@ export const WithFooter: Story = {
       </TableFooter>
     </Table>
   ),
+}
+
+export const ResponsiveExample: Story = {
+  render: () => {
+    const tasks = [
+      {
+        id: 1,
+        title: 'Implement API',
+        status: 'In Progress',
+        category: 'Development',
+        hours: 8.0,
+      },
+      {
+        id: 2,
+        title: 'Design Homepage',
+        status: 'Completed',
+        category: 'Design',
+        hours: 12.5,
+      },
+      {
+        id: 3,
+        title: 'Write Documentation',
+        status: 'To Do',
+        category: 'Development',
+        hours: 6.0,
+      },
+    ]
+
+    const getStatusBadge = (status: string) => {
+      const variants: Record<string, 'primary' | 'success' | 'neutral'> = {
+        'In Progress': 'primary',
+        Completed: 'success',
+        'To Do': 'neutral',
+      }
+      return (
+        <Badge variant={variants[status]} dot>
+          {status}
+        </Badge>
+      )
+    }
+
+    return (
+      <div className="w-full max-w-4xl">
+        {/* Desktop Table */}
+        <div className="hidden md:block">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Task</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead className="text-right">Hours</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {tasks.map((task) => (
+                <TableRow key={task.id}>
+                  <TableCell className="font-medium">{task.title}</TableCell>
+                  <TableCell>{getStatusBadge(task.status)}</TableCell>
+                  <TableCell>{task.category}</TableCell>
+                  <TableCell className="text-right">{task.hours}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+        {/* Mobile Cards */}
+        <div className="flex flex-col gap-3 md:hidden">
+          {tasks.map((task) => (
+            <TableCard key={task.id}>
+              <h3 className="mb-3 font-semibold text-neutral-900">
+                {task.title}
+              </h3>
+              <TableCardRow
+                label="Status"
+                value={getStatusBadge(task.status)}
+              />
+              <TableCardRow label="Category" value={task.category} />
+              <TableCardRow
+                label="Hours"
+                value={<span className="font-medium">{task.hours}</span>}
+              />
+            </TableCard>
+          ))}
+        </div>
+      </div>
+    )
+  },
 }
 
 export const WithActions: Story = {
