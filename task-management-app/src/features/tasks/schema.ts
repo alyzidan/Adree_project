@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import { TASK_STATUS, TASK_CATEGORY, TASK_PRIORITY } from '@/lib/constants'
 
-// Task Status Schema
 export const taskStatusSchema = z.enum([
   TASK_STATUS.TODO,
   TASK_STATUS.IN_PROGRESS,
@@ -9,7 +8,6 @@ export const taskStatusSchema = z.enum([
   TASK_STATUS.CANCELLED,
 ])
 
-// Task Category Schema
 export const taskCategorySchema = z.enum([
   TASK_CATEGORY.DEVELOPMENT,
   TASK_CATEGORY.DESIGN,
@@ -19,7 +17,6 @@ export const taskCategorySchema = z.enum([
   TASK_CATEGORY.OTHER,
 ])
 
-// Task Priority Schema
 export const taskPrioritySchema = z.enum([
   TASK_PRIORITY.LOW,
   TASK_PRIORITY.MEDIUM,
@@ -27,7 +24,6 @@ export const taskPrioritySchema = z.enum([
   TASK_PRIORITY.URGENT,
 ])
 
-// Create Task Schema
 export const createTaskSchema = z.object({
   title: z
     .string()
@@ -48,7 +44,6 @@ export const createTaskSchema = z.object({
     .max(1000, 'Hours must be less than 1000'),
 })
 
-// Update Task Schema (all fields optional except id)
 export const updateTaskSchema = z.object({
   id: z.string(),
   title: z
@@ -72,7 +67,6 @@ export const updateTaskSchema = z.object({
     .optional(),
 })
 
-// Task Filters Schema
 export const taskFiltersSchema = z.object({
   status: z.union([taskStatusSchema, z.literal('all')]).optional(),
   category: z.union([taskCategorySchema, z.literal('all')]).optional(),

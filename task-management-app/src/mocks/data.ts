@@ -119,7 +119,7 @@ export function generateMockTasks(count: number = 30): Task[] {
         ? assignees[Math.floor(Math.random() * assignees.length)]
         : undefined,
       dueDate: hasDueDate ? randomDate(now, oneMonthFromNow) : undefined,
-      estimatedHours: Math.round((Math.random() * 20 + 1) * 2) / 2, // 0.5 to 20 hours
+      estimatedHours: Math.round((Math.random() * 20 + 1) * 2) / 2,
       createdAt,
       updatedAt,
     })

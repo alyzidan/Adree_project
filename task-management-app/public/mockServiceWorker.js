@@ -128,7 +128,7 @@ async function handleRequest(event, requestId, requestInterceptedAt) {
     event,
     client,
     requestId,
-    requestInterceptedAt,
+    requestInterceptedAt
   )
 
   // Send back the response clone for the "response:*" life-cycle events.
@@ -159,7 +159,7 @@ async function handleRequest(event, requestId, requestInterceptedAt) {
           },
         },
       },
-      responseClone.body ? [serializedRequest.body, responseClone.body] : [],
+      responseClone.body ? [serializedRequest.body, responseClone.body] : []
     )
   }
 
@@ -225,7 +225,7 @@ async function getResponse(event, client, requestId, requestInterceptedAt) {
     if (acceptHeader) {
       const values = acceptHeader.split(',').map((value) => value.trim())
       const filteredValues = values.filter(
-        (value) => value !== 'msw/passthrough',
+        (value) => value !== 'msw/passthrough'
       )
 
       if (filteredValues.length > 0) {
@@ -238,7 +238,6 @@ async function getResponse(event, client, requestId, requestInterceptedAt) {
     return fetch(requestClone, { headers })
   }
 
-  // Bypass mocking when the client is not active.
   if (!client) {
     return passthrough()
   }
@@ -251,7 +250,6 @@ async function getResponse(event, client, requestId, requestInterceptedAt) {
     return passthrough()
   }
 
-  // Notify the client that a request has been intercepted.
   const serializedRequest = await serializeRequest(event.request)
   const clientMessage = await sendToClient(
     client,
@@ -263,7 +261,7 @@ async function getResponse(event, client, requestId, requestInterceptedAt) {
         ...serializedRequest,
       },
     },
-    [serializedRequest.body],
+    [serializedRequest.body]
   )
 
   switch (clientMessage.type) {

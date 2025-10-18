@@ -39,23 +39,20 @@ function TestPage() {
         priority: 'medium',
         estimatedHours: 5,
       })
-      log('✅ Task created successfully')
     } catch (err) {
-      log('❌ Failed to create task')
+      log(err as string)
     }
   }
 
   const handleDeleteFirst = async () => {
     if (tasks.length === 0) {
-      log('❌ No tasks to delete')
       return
     }
     log('Deleting first task...')
     try {
       await deleteTask(tasks[0].id)
-      log('✅ Task deleted successfully')
     } catch (err) {
-      log('❌ Failed to delete task')
+      log(err as string)
     }
   }
 

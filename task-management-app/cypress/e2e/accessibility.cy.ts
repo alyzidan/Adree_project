@@ -5,11 +5,9 @@ describe('Accessibility Tests', () => {
     cy.visit('/dashboard')
     cy.wait(1000)
 
-    // Check main heading
     cy.get('h1').should('have.length', 1)
     cy.get('h1').should('contain', 'Dashboard')
 
-    // Check heading hierarchy
     cy.get('h1, h2, h3').then(($headings) => {
       expect($headings.length).to.be.greaterThan(0)
     })
@@ -19,17 +17,14 @@ describe('Accessibility Tests', () => {
     cy.visit('/tasks')
     cy.wait(1000)
 
-    // Check main heading
     cy.get('h1').should('contain', 'Tasks')
 
-    // Check buttons have text or aria-label
     cy.get('button').each(($btn) => {
       const hasText = $btn.text().trim().length > 0
       const hasAriaLabel = $btn.attr('aria-label') !== undefined
       const hasTitle = $btn.attr('title') !== undefined
       const hasSvg = $btn.find('svg').length > 0
 
-      // Button should have text, aria-label, title, or contain SVG icon
       const isAccessible = hasText || hasAriaLabel || hasTitle || hasSvg
 
       if (!isAccessible) {
@@ -41,7 +36,6 @@ describe('Accessibility Tests', () => {
   it('should have proper form labels', () => {
     cy.visit('/tasks')
 
-    // Open modal
     cy.findByRole('button', { name: /add task/i }).click()
     cy.wait(1000)
 
@@ -62,7 +56,6 @@ describe('Accessibility Tests', () => {
       .focus()
       .should('be.focused')
 
-    // Verify we can focus on next element
     cy.get(
       'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
     )

@@ -23,7 +23,6 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-// ✅ Default
 export const Default: Story = {
   render: () => {
     const [open, setOpen] = useState(false)
@@ -56,7 +55,6 @@ export const Default: Story = {
   },
 }
 
-// ✅ Small
 export const Small: Story = {
   render: () => {
     const [open, setOpen] = useState(false)
@@ -80,7 +78,6 @@ export const Small: Story = {
   },
 }
 
-// ✅ Large
 export const Large: Story = {
   render: () => {
     const [open, setOpen] = useState(false)
@@ -117,7 +114,6 @@ export const Large: Story = {
   },
 }
 
-// ✅ With Form
 export const WithForm: Story = {
   render: () => {
     const [open, setOpen] = useState(false)
@@ -162,7 +158,6 @@ export const WithForm: Story = {
   },
 }
 
-// ✅ Delete Confirmation
 export const DeleteConfirmation: Story = {
   render: () => {
     const [open, setOpen] = useState(false)
@@ -194,7 +189,6 @@ export const DeleteConfirmation: Story = {
   },
 }
 
-// ✅ All Sizes
 export const AllSizes: Story = {
   render: () => {
     const [size, setSize] = useState<'sm' | 'md' | 'lg' | 'xl'>('md')

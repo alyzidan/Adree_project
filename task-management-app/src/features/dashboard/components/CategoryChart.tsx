@@ -11,7 +11,6 @@ import {
 import { TASK_CATEGORY_LABELS } from '@/lib/constants'
 import { CategoryData } from '../utils'
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 interface CategoryChartProps {

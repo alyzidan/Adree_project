@@ -82,10 +82,10 @@ export const devTools = {
 
   checkMSW() {
     if ('worker' in window) {
-      console.log('✅ MSW is running')
+      console.log(' MSW is running')
       return true
     } else {
-      console.log('❌ MSW is not running')
+      console.log(' MSW is not running')
       return false
     }
   },

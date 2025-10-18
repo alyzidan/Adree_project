@@ -19,7 +19,6 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (config) => {
-    // ✅ إصلاح المسارات (aliases) تلقائياً بناءً على tsconfig
     config.plugins = [...(config.plugins || []), tsconfigPaths()]
 
     config.resolve = {
@@ -30,7 +29,6 @@ const config: StorybookConfig = {
       },
     }
 
-    // ✅ أهم خطوة: خلي esbuild يعرف يقرأ TypeScript Generics داخل JSX
     config.esbuild = {
       ...config.esbuild,
       loader: 'tsx',

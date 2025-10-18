@@ -93,11 +93,11 @@ export const useTasksStore = create<TasksState>()(
 
         try {
           const { filters, sort, pagination } = get()
-          console.log('🔄 Fetching tasks with:', { filters, sort, pagination })
+          console.log('Fetching tasks with:', { filters, sort, pagination })
 
           const response = await tasksApi.getTasks(filters, sort, pagination)
 
-          console.log('✅ Tasks fetched:', response.tasks.length)
+          console.log('Tasks fetched:', response.tasks.length)
 
           set({
             tasks: response.tasks,
@@ -106,7 +106,7 @@ export const useTasksStore = create<TasksState>()(
             isLoading: false,
           })
         } catch (error) {
-          console.error('❌ Fetch error:', error)
+          console.error(' Fetch error:', error)
           set({
             error:
               error instanceof Error ? error.message : 'Failed to fetch tasks',
@@ -251,7 +251,6 @@ export const useTasksStore = create<TasksState>()(
   )
 )
 
-// Export store for debugging (Development only)
 if (process.env.NODE_ENV === 'development') {
   ;(window as any).tasksStore = useTasksStore
 }

@@ -10,7 +10,6 @@ import {
 } from './types'
 
 export const tasksApi = {
-  // Get all tasks
   async getTasks(
     filters?: TaskFilters,
     sort?: TaskSortConfig,
@@ -39,22 +38,18 @@ export const tasksApi = {
     return apiClient.get<TasksResponse>('/tasks', params)
   },
 
-  // Get single task
   async getTask(id: string): Promise<Task> {
     return apiClient.get<Task>(`/tasks/${id}`)
   },
 
-  // Create task
   async createTask(input: CreateTaskInput): Promise<Task> {
     return apiClient.post<Task>('/tasks', input)
   },
 
-  // Update task
   async updateTask(id: string, input: Partial<UpdateTaskInput>): Promise<Task> {
     return apiClient.put<Task>(`/tasks/${id}`, input)
   },
 
-  // Delete task
   async deleteTask(id: string): Promise<void> {
     return apiClient.delete<void>(`/tasks/${id}`)
   },

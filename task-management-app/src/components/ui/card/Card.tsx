@@ -58,9 +58,6 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = 'Card'
 
-// ============================
-// Card Header
-// ============================
 export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
   divider?: boolean
 }
@@ -85,9 +82,6 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
 
 CardHeader.displayName = 'CardHeader'
 
-// ============================
-// Card Title
-// ============================
 export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
@@ -108,9 +102,6 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
 
 CardTitle.displayName = 'CardTitle'
 
-// ============================
-// Card Description
-// ============================
 export const CardDescription = forwardRef<
   HTMLParagraphElement,
   HTMLAttributes<HTMLParagraphElement>
@@ -128,9 +119,6 @@ export const CardDescription = forwardRef<
 
 CardDescription.displayName = 'CardDescription'
 
-// ============================
-// Card Content
-// ============================
 export const CardContent = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement>
@@ -144,9 +132,6 @@ export const CardContent = forwardRef<
 
 CardContent.displayName = 'CardContent'
 
-// ============================
-// Card Footer
-// ============================
 export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
   divider?: boolean
 }

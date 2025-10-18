@@ -8,10 +8,8 @@ import {
   TasksResponse,
 } from '@/features/tasks/types'
 
-// In-memory storage (simulating database)
 let tasks: Task[] = [...mockTasks]
 
-// Simulate network delay
 const NETWORK_DELAY = 500
 
 function generateId(): string {

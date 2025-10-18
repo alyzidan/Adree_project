@@ -6,41 +6,31 @@ describe('Tasks Workflow E2E', () => {
   })
 
   it('should complete full task lifecycle: create, edit, delete', () => {
-    // Navigate to tasks page
     cy.findByRole('link', { name: /tasks/i }).click()
     cy.url().should('include', '/tasks')
 
-    // Click Add Task button
     cy.findByRole('button', { name: /add task/i }).click()
 
-    // Wait for modal to open - check for form instead of heading
     cy.findByLabelText(/task title/i, { timeout: 5000 }).should('be.visible')
 
-    // Fill in task form
     cy.findByLabelText(/task title/i).type('E2E Cypress Test Task')
 
-    // Use ID selector for textarea
     cy.get('#description-field').type('This is a Cypress E2E test task')
 
     cy.findByLabelText(/estimated hours/i)
       .clear()
       .type('8')
 
-    // Submit form
     cy.findByRole('button', { name: /create task/i }).click({ force: true })
 
-    // Wait for success toast
     cy.findByText(/task created successfully/i, { timeout: 5000 }).should(
       'be.visible'
     )
 
-    // Wait for modal to close and toast to disappear
     cy.wait(1000)
 
-    // Verify task appears in list
     cy.contains('E2E Cypress Test Task').should('be.visible')
 
-    // Edit the task - click edit button
     cy.contains('E2E Cypress Test Task')
       .parents('[data-testid="task-row"], .rounded-lg')
       .first()
@@ -48,7 +38,6 @@ describe('Tasks Workflow E2E', () => {
       .first()
       .click({ force: true })
 
-    // Wait for edit form to be visible
     cy.findByLabelText(/task title/i, { timeout: 5000 }).should('be.visible')
 
     cy.findByLabelText(/task title/i)
@@ -56,18 +45,14 @@ describe('Tasks Workflow E2E', () => {
       .type('E2E Cypress Test Task (Updated)')
     cy.findByRole('button', { name: /update task/i }).click({ force: true })
 
-    // Wait for update toast
     cy.findByText(/task updated successfully/i, { timeout: 5000 }).should(
       'be.visible'
     )
 
-    // Wait for modal to close
     cy.wait(1000)
 
-    // Verify updated title
     cy.contains('E2E Cypress Test Task (Updated)').should('be.visible')
 
-    // Delete the task
     cy.contains('E2E Cypress Test Task (Updated)')
       .parents('[data-testid="task-row"], .rounded-lg')
       .first()
@@ -75,10 +60,8 @@ describe('Tasks Workflow E2E', () => {
       .last()
       .click({ force: true })
 
-    // Confirm delete in dialog
     cy.findByRole('button', { name: /^delete$/i }).click({ force: true })
 
-    // Wait for delete toast
     cy.findByText(/task deleted successfully/i, { timeout: 5000 }).should(
       'be.visible'
     )
@@ -91,28 +74,22 @@ describe('Tasks Workflow E2E', () => {
     cy.visit('/tasks')
     cy.wait(1000)
 
-    // Click on status filter
     cy.contains('button', 'All Statuses').click()
 
-    // Select "Completed"
     cy.contains('[role="option"]', 'Completed').click()
 
     cy.wait(1000)
 
-    // Verify we're still on tasks page
     cy.url().should('include', '/tasks')
   })
 
   it('should search tasks', () => {
     cy.visit('/tasks')
 
-    // Type in search
     cy.findByPlaceholderText(/search tasks/i).type('test')
 
-    // Wait for debounce
     cy.wait(500)
 
-    // Verify search is working
     cy.url().should('include', '/tasks')
   })
 

@@ -15,7 +15,7 @@ async function enableMocking() {
   }
   const { worker } = await import('./mocks/browser')
 
-  // Start the worker with quiet mode to reduce console noise
+  //  worker starts with quiet mode to reduce console noise
   return worker.start({
     onUnhandledRequest: 'bypass',
   })
@@ -28,9 +28,3 @@ enableMocking().then(() => {
     </React.StrictMode>
   )
 })
-
-// ReactDOM.createRoot(document.getElementById('root')!).render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// )

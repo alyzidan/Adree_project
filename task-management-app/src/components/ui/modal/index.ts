@@ -14,7 +14,6 @@ export {
   ModalFooter,
 }
 
-// ✅ export default object for convenience
 export default {
   Modal,
   ModalHeader,
