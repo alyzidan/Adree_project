@@ -81,10 +81,23 @@ export const useTasksStore = create<TasksState>()(
 
       // Fetch all tasks
       fetchTasks: async () => {
+        const state = get()
+
+        // Prevent duplicate requests
+        if (state.isLoading) {
+          console.log('⏸️ Already loading, skipping duplicate request')
+          return
+        }
+
         set({ isLoading: true, error: null })
+
         try {
           const { filters, sort, pagination } = get()
+          console.log('🔄 Fetching tasks with:', { filters, sort, pagination })
+
           const response = await tasksApi.getTasks(filters, sort, pagination)
+
+          console.log('✅ Tasks fetched:', response.tasks.length)
 
           set({
             tasks: response.tasks,
@@ -93,6 +106,7 @@ export const useTasksStore = create<TasksState>()(
             isLoading: false,
           })
         } catch (error) {
+          console.error('❌ Fetch error:', error)
           set({
             error:
               error instanceof Error ? error.message : 'Failed to fetch tasks',
@@ -122,12 +136,7 @@ export const useTasksStore = create<TasksState>()(
         try {
           const newTask = await tasksApi.createTask(input)
 
-          // Optimistic update
-          set((state) => ({
-            tasks: [newTask, ...state.tasks],
-            total: state.total + 1,
-            isCreating: false,
-          }))
+          set({ isCreating: false })
 
           // Refresh to sync with server
           await get().fetchTasks()
@@ -149,15 +158,10 @@ export const useTasksStore = create<TasksState>()(
         try {
           const updatedTask = await tasksApi.updateTask(id, input)
 
-          // Optimistic update
-          set((state) => ({
-            tasks: state.tasks.map((task) =>
-              task.id === id ? updatedTask : task
-            ),
-            selectedTask:
-              state.selectedTask?.id === id ? updatedTask : state.selectedTask,
-            isUpdating: false,
-          }))
+          set({ isUpdating: false })
+
+          // Refresh to sync with server
+          await get().fetchTasks()
 
           return updatedTask
         } catch (error) {
@@ -176,14 +180,7 @@ export const useTasksStore = create<TasksState>()(
         try {
           await tasksApi.deleteTask(id)
 
-          // Optimistic update
-          set((state) => ({
-            tasks: state.tasks.filter((task) => task.id !== id),
-            total: state.total - 1,
-            selectedTask:
-              state.selectedTask?.id === id ? null : state.selectedTask,
-            isDeleting: false,
-          }))
+          set({ isDeleting: false })
 
           // Refresh to sync with server
           await get().fetchTasks()
@@ -201,15 +198,22 @@ export const useTasksStore = create<TasksState>()(
       setFilters: (newFilters: Partial<TaskFilters>) => {
         set((state) => ({
           filters: { ...state.filters, ...newFilters },
-          pagination: { ...state.pagination, page: 1 }, // Reset to page 1
+          pagination: { ...state.pagination, page: 1 },
         }))
-        get().fetchTasks()
+
+        // Debounce the fetch slightly
+        setTimeout(() => {
+          get().fetchTasks()
+        }, 100)
       },
 
       // Set sort
       setSort: (sort: TaskSortConfig) => {
         set({ sort })
-        get().fetchTasks()
+
+        setTimeout(() => {
+          get().fetchTasks()
+        }, 100)
       },
 
       // Set pagination
@@ -217,7 +221,10 @@ export const useTasksStore = create<TasksState>()(
         set((state) => ({
           pagination: { ...state.pagination, ...newPagination },
         }))
-        get().fetchTasks()
+
+        setTimeout(() => {
+          get().fetchTasks()
+        }, 100)
       },
 
       // Reset filters
@@ -226,7 +233,10 @@ export const useTasksStore = create<TasksState>()(
           filters: initialFilters,
           pagination: initialPagination,
         })
-        get().fetchTasks()
+
+        setTimeout(() => {
+          get().fetchTasks()
+        }, 100)
       },
 
       // Clear error
@@ -234,9 +244,14 @@ export const useTasksStore = create<TasksState>()(
         set({ error: null })
       },
     }),
-    { name: 'tasks-store' }
+    {
+      name: 'tasks-store',
+      enabled: true,
+    }
   )
 )
+
+// Export store for debugging (Development only)
 if (process.env.NODE_ENV === 'development') {
   ;(window as any).tasksStore = useTasksStore
 }

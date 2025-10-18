@@ -9,14 +9,6 @@ import TaskPagination from './TaskPagination'
 function TaskList() {
   const { tasks, isLoading, error, total } = useTasks()
 
-  if (isLoading) {
-    return (
-      <div className="flex min-h-[400px] items-center justify-center">
-        <LoadingSpinner size="lg" />
-      </div>
-    )
-  }
-
   if (error) {
     return (
       <div className="rounded-lg border-2 border-danger-200 bg-danger-50 p-8 text-center">
@@ -25,7 +17,15 @@ function TaskList() {
     )
   }
 
-  if (tasks.length === 0) {
+  if (isLoading && tasks.length === 0) {
+    return (
+      <div className="flex min-h-[400px] items-center justify-center">
+        <LoadingSpinner size="lg" />
+      </div>
+    )
+  }
+
+  if (!isLoading && tasks.length === 0) {
     return (
       <EmptyState
         icon={<FileText className="h-12 w-12" />}

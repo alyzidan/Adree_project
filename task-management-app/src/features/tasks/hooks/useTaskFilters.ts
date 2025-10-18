@@ -1,35 +1,36 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { useTasksStore } from '../store'
 
 export function useTaskFilters() {
   const { filters, setFilters, resetFilters } = useTasksStore()
   const [searchQuery, setSearchQuery] = useState(filters.search || '')
 
-  // Debounced search
-  const handleSearch = useMemo(() => {
-    let timeoutId: NodeJS.Timeout
-
-    return (query: string) => {
+  // Debounced search with useCallback
+  const handleSearch = useCallback(
+    (query: string) => {
       setSearchQuery(query)
-      clearTimeout(timeoutId)
 
-      timeoutId = setTimeout(() => {
+      // Clear existing timeout
+      const timeoutId = setTimeout(() => {
         setFilters({ search: query || undefined })
-      }, 300) // 300ms debounce
-    }
-  }, [setFilters])
+      }, 300)
 
-  const handleFilterChange = (
-    key: keyof typeof filters,
-    value: string | undefined
-  ) => {
-    setFilters({ [key]: value })
-  }
+      return () => clearTimeout(timeoutId)
+    },
+    [setFilters]
+  )
 
-  const handleReset = () => {
+  const handleFilterChange = useCallback(
+    (key: keyof typeof filters, value: string | undefined) => {
+      setFilters({ [key]: value })
+    },
+    [setFilters]
+  )
+
+  const handleReset = useCallback(() => {
     setSearchQuery('')
     resetFilters()
-  }
+  }, [resetFilters])
 
   return {
     filters,

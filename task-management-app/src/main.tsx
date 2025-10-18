@@ -2,6 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import '@/styles/index.css'
+// Import devTools in development
+if (process.env.NODE_ENV === 'development') {
+  import('./lib/devTools')
+}
 if (process.env.NODE_ENV === 'development') {
   import('./lib/devTools')
 }

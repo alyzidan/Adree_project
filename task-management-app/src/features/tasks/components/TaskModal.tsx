@@ -1,9 +1,11 @@
-import Modal, {
+import {
+  Modal,
   ModalHeader,
   ModalTitle,
   ModalDescription,
   ModalBody,
-} from '@/components/ui/modal/Modal'
+  ModalFooter,
+} from '../../../components/ui/modal'
 import TaskForm from './TaskForm'
 import { useTaskMutations } from '../hooks'
 import { Task } from '../types'
