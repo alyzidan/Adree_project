@@ -4,6 +4,7 @@ import Button from '@/components/ui/button/Button'
 import { Plus } from 'lucide-react'
 import TaskList from './components/TaskList'
 import TaskFilters from './components/TaskFilters'
+import TaskSort from './components/TaskSort'
 import TaskSearch from './components/TaskSearch'
 import TaskModal from './components/TaskModal'
 import { Toaster } from '@/components/ui/toast/Toaster'
@@ -32,11 +33,18 @@ function TasksPage() {
           </div>
 
           {/* Search & Filters */}
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex-1">
-              <TaskSearch />
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex-1">
+                <TaskSearch />
+              </div>
+              <TaskFilters />
             </div>
-            <TaskFilters />
+
+            {/* Sorting */}
+            <div className="flex justify-end">
+              <TaskSort />
+            </div>
           </div>
 
           {/* Tasks List */}
