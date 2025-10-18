@@ -1,28 +1,59 @@
+import { useState } from 'react'
 import Container from '@/components/layout/Container'
+import Button from '@/components/ui/button/Button'
+import { Plus } from 'lucide-react'
+import TaskList from './components/TaskList'
+import TaskFilters from './components/TaskFilters'
+import TaskSearch from './components/TaskSearch'
+import TaskModal from './components/TaskModal'
+import { Toaster } from '@/components/ui/toast/Toaster'
 
 function TasksPage() {
-  return (
-    <Container>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-neutral-900">Tasks</h1>
-            <p className="mt-2 text-neutral-600">
-              Manage your tasks efficiently
-            </p>
-          </div>
-          <button className="rounded-lg bg-primary-600 px-4 py-2 font-medium text-white transition-colors hover:bg-primary-700">
-            Add Task
-          </button>
-        </div>
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
 
-        <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
-          <p className="text-center text-neutral-500">
-            Task list coming soon...
-          </p>
+  return (
+    <>
+      <Container>
+        <div className="space-y-6">
+          {/* Header */}
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-neutral-900">Tasks</h1>
+              <p className="mt-2 text-neutral-600">
+                Manage and track your tasks efficiently
+              </p>
+            </div>
+            <Button
+              leftIcon={<Plus className="h-4 w-4" />}
+              onClick={() => setIsCreateModalOpen(true)}
+            >
+              Add Task
+            </Button>
+          </div>
+
+          {/* Search & Filters */}
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex-1">
+              <TaskSearch />
+            </div>
+            <TaskFilters />
+          </div>
+
+          {/* Tasks List */}
+          <TaskList />
         </div>
-      </div>
-    </Container>
+      </Container>
+
+      {/* Create Task Modal */}
+      <TaskModal
+        open={isCreateModalOpen}
+        onOpenChange={setIsCreateModalOpen}
+        mode="create"
+      />
+
+      {/* Toast Notifications */}
+      <Toaster />
+    </>
   )
 }
 
