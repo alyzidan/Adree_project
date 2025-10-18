@@ -27,7 +27,7 @@ function TaskCards({ tasks }: TaskCardsProps) {
     <>
       <div className="space-y-3">
         {tasks.map((task) => (
-          <Card key={task.id} hoverable>
+          <Card key={task.id} hoverable data-testid="task-card">
             <CardContent className="p-4">
               {/* Header */}
               <div className="mb-3 flex items-start justify-between">

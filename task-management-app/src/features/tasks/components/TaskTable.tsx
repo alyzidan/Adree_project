@@ -47,7 +47,7 @@ function TaskTable({ tasks }: TaskTableProps) {
           </TableHeader>
           <TableBody>
             {tasks.map((task) => (
-              <TableRow key={task.id}>
+              <TableRow key={task.id} data-testid="task-row">
                 {/* Title & Description */}
                 <TableCell className="max-w-xs">
                   <div>
