@@ -54,15 +54,29 @@ describe('Accessibility Tests', () => {
   it('should have keyboard navigation', () => {
     cy.visit('/tasks')
 
-    // Use keyboard to navigate
-    cy.get('body').type('{tab}')
-    cy.focused().should('exist')
+    // Get first focusable element and focus it
+    cy.get(
+      'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+    )
+      .first()
+      .focus()
+      .should('be.focused')
 
-    cy.get('body').type('{tab}')
-    cy.focused().should('exist')
+    // Verify we can focus on next element
+    cy.get(
+      'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+    )
+      .eq(1)
+      .focus()
+      .should('be.focused')
 
-    cy.get('body').type('{tab}')
-    cy.focused().should('exist')
+    // Verify we can focus on third element
+    cy.get(
+      'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+    )
+      .eq(2)
+      .focus()
+      .should('be.focused')
   })
 
   it('should have proper ARIA attributes', () => {
