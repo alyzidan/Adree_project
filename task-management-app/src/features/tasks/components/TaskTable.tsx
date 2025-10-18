@@ -113,12 +113,14 @@ function TaskTable({ tasks }: TaskTableProps) {
                       size="sm"
                       variant="ghost"
                       onClick={() => setEditingTask(task)}
+                      aria-label={`Edit ${task.title}`}
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
                     <Button
                       size="sm"
                       variant="ghost"
+                      aria-label={`Delete ${task.title}`}
                       onClick={() => setDeletingTaskId(task.id)}
                     >
                       <Trash2 className="h-4 w-4 text-danger-600" />
