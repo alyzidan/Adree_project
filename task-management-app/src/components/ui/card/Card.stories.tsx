@@ -1,12 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Clock, User, Calendar } from 'lucide-react'
-import Card, {
+// import Card, {
+//   CardHeader,
+//   CardTitle,
+//   CardDescription,
+//   CardContent,
+//   CardFooter,
+// } from './Card'
+import {
+  Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
   CardFooter,
-} from './Card'
+} from '.'
 import Button from '../button/Button'
 import Badge from '../badge/Badge'
 
