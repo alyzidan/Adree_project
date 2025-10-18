@@ -4,6 +4,7 @@ import { RouteObject, Navigate } from 'react-router-dom'
 // Lazy load pages for code splitting
 const DashboardPage = lazy(() => import('@/features/dashboard/DashboardPage'))
 const TasksPage = lazy(() => import('@/features/tasks/TasksPage'))
+const TestPage = lazy(() => import('@/features/tasks/TestPage'))
 
 export const routes: RouteObject[] = [
   {
@@ -18,6 +19,14 @@ export const routes: RouteObject[] = [
     path: '/tasks',
     element: <TasksPage />,
   },
+  ...(process.env.NODE_ENV === 'development'
+    ? [
+        {
+          path: '/test',
+          element: <TestPage />,
+        },
+      ]
+    : []),
   {
     path: '*',
     element: (
