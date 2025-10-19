@@ -17,8 +17,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -43,6 +41,7 @@ jobs:
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v4
+        continue-on-error: true # ← عشان لو مفيش token مش يفشل
         with:
           files: ./coverage/lcov.info
           flags: unittests
@@ -60,8 +59,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
