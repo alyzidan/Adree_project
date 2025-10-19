@@ -8,7 +8,7 @@ import {
   TasksResponse,
 } from '@/features/tasks/types'
 
-let tasks: Task[] = [...mockTasks]
+const tasks: Task[] = [...mockTasks]
 
 const NETWORK_DELAY = 500
 
@@ -64,7 +64,7 @@ export const handlers = [
     const sortOrder = url.searchParams.get('sortOrder') || 'desc'
 
     // Apply filters
-    let filtered = filterTasks({
+    const filtered = filterTasks({
       status: status as TaskFilters['status'],
       category: category as TaskFilters['category'],
       priority: priority as TaskFilters['priority'],

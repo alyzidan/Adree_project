@@ -252,5 +252,5 @@ export const useTasksStore = create<TasksState>()(
 )
 
 if (process.env.NODE_ENV === 'development') {
-  ;(window as any).tasksStore = useTasksStore
+  (window as any).tasksStore = useTasksStore
 }
