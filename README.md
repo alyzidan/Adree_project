@@ -50,8 +50,8 @@ A modern, production-ready task management application built with React, TypeScr
 
 ## Requirements
 
-- Node.js 20.x, 22.x, or 23.x
-- pnpm 8.x or 9.x
+- Node.js 23.x
+- pnpm 8.x
 
 ## Getting Started
 
@@ -59,8 +59,7 @@ A modern, production-ready task management application built with React, TypeScr
 
 ```bash
 # Clone repository
-git clone <repository-url>
-cd task-management-app
+git clone [<repository-url>](https://github.com/alyzidan/Adree_project)
 
 # Install dependencies
 pnpm install
@@ -104,7 +103,6 @@ pnpm format       # Format with Prettier
 
 ```bash
 pnpm storybook         # Start Storybook
-pnpm build-storybook   # Build Storybook
 ```
 
 ## Project Structure
@@ -140,7 +138,10 @@ src/
 
 ### Test Types
 
-### verfiy script
+- unit test
+- e2e tests with cypress
+
+### verfiy script - plus
 
 - chmod +x scripts/verify.sh
 - ./scripts/verify.sh
@@ -151,14 +152,6 @@ src/
 - E2E Tests: Complete user journeys with Cypress
 
 View detailed testing documentation in [TESTING.md](./TESTING.md)
-
-## Git Hooks
-
-Pre-configured Husky hooks ensure code quality:
-
-- pre-commit: Runs ESLint and Prettier on staged files
-- commit-msg: Validates commit message format (Conventional Commits)
-- pre-push: Runs type check and all tests
 
 ## CI/CD
 
@@ -187,8 +180,6 @@ Production build optimization:
 - Minification with Terser
 - Gzip compression
 - Asset caching
-
-See [PRODUCTION.md](./PRODUCTION.md) for detailed deployment guide.
 
 ## Contributing
 
