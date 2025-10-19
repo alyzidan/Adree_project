@@ -20,13 +20,14 @@ export function useTasks() {
   } = useTasksStore()
 
   const hasFetched = useRef(false)
-  // Fetch tasks on mount
+
   // Fetch tasks only once on mount
   useEffect(() => {
     if (!hasFetched.current) {
       hasFetched.current = true
       fetchTasks()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return {

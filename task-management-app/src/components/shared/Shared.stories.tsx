@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { FileText, Trash2, AlertTriangle } from 'lucide-react'
+import { FileText, Trash2 } from 'lucide-react'
 import LoadingSpinner from './LoadingSpinner'
 import EmptyState from './EmptyState'
 import ErrorBoundary from './ErrorBoundary'

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, KeyboardEvent } from 'react'
 import { cn } from '@/lib/utils'
 
 export interface TableCardProps {
@@ -8,6 +8,13 @@ export interface TableCardProps {
 }
 
 export function TableCard({ children, className, onClick }: TableCardProps) {
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault()
+      onClick()
+    }
+  }
+
   return (
     <div
       className={cn(
@@ -16,6 +23,9 @@ export function TableCard({ children, className, onClick }: TableCardProps) {
         className
       )}
       onClick={onClick}
+      onKeyDown={onClick ? handleKeyDown : undefined}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
     >
       {children}
     </div>
