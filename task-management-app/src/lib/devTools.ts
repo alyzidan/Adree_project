@@ -92,7 +92,7 @@ export const devTools = {
 }
 
 if (process.env.NODE_ENV === 'development') {
-  (window as any).devTools = devTools
+  ;(window as any).devTools = devTools
   console.log(
     '%c🛠️ DevTools Available',
     'background: #0ea5e9; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;'

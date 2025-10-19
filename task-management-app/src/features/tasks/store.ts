@@ -256,5 +256,5 @@ if (process.env.NODE_ENV === 'development') {
     tasksStore: typeof useTasksStore
   }
   // eslint-disable-next-line @typescript-eslint/no-extra-semi
-  (window as unknown as WindowWithStore).tasksStore = useTasksStore
+  ;(window as unknown as WindowWithStore).tasksStore = useTasksStore
 }
