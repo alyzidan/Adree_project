@@ -170,7 +170,5 @@ export const useTasksStore = create()(devtools((set, get) => ({
     enabled: true,
 }));
 if (process.env.NODE_ENV === 'development') {
-    // eslint-disable-next-line @typescript-eslint/no-extra-semi
-    ;
     window.tasksStore = useTasksStore;
 }
