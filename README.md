@@ -151,8 +151,6 @@ src/
 - Integration Tests: Feature workflows and forms
 - E2E Tests: Complete user journeys with Cypress
 
-View detailed testing documentation in [TESTING.md](./TESTING.md)
-
 ## CI/CD
 
 GitHub Actions workflows automatically run on push and pull requests:
@@ -189,10 +187,6 @@ Production build optimization:
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open Pull Request
 
-Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) specification.
-
 ## License
 
 MIT License - see [LICENSE](./LICENSE) file for details.
-
-# Test CI
