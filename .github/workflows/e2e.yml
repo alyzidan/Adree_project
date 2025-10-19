@@ -32,7 +32,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           build: pnpm build
-          start: pnpm preview
+          start: pnpm dev
           wait-on: 'http://localhost:4173'
           wait-on-timeout: 120
           browser: chrome
