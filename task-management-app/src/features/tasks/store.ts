@@ -255,6 +255,5 @@ if (process.env.NODE_ENV === 'development') {
   interface WindowWithStore extends Window {
     tasksStore: typeof useTasksStore
   }
-  // eslint-disable-next-line @typescript-eslint/no-extra-semi
-  ;(window as unknown as WindowWithStore).tasksStore = useTasksStore
+  (window as unknown as WindowWithStore).tasksStore = useTasksStore
 }

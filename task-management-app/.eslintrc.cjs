@@ -50,9 +50,9 @@ module.exports = {
     {
       // Allowing dev files
       files: [
-        'src/lib/devTools.ts',
         'src/test/**/*.ts',
         'src/test/**/*.tsx',
+        'src/lib/devTools.ts',
         '**/*.test.ts',
         '**/*.test.tsx',
         'src/features/tasks/store.ts',
@@ -60,6 +60,7 @@ module.exports = {
       rules: {
         'no-console': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-extra-semi': 'off',
       },
     },
   ],
