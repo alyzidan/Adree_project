@@ -62,8 +62,8 @@ devDependencies:
     specifier: ^4.1.1
     version: 4.1.1(storybook@7.6.20)
   '@eslint/js':
-    specifier: ^9.36.0
-    version: 9.37.0
+    specifier: ^9.38.0
+    version: 9.38.0
   '@storybook/addon-a11y':
     specifier: ^7.6.20
     version: 7.6.20
@@ -1991,8 +1991,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@eslint/js@9.37.0:
-    resolution: {integrity: sha512-jaS+NJ+hximswBG6pjNX0uEJZkrT0zwpVi3BA3vX22aFGjJjmgSTSmPpZCRKmoBL5VY/M6p0xsSJx7rk7sy5gg==}
+  /@eslint/js@9.38.0:
+    resolution: {integrity: sha512-UZ1VpFvXf9J06YG9xQBdnzU+kthors6KjhMAl6f4gH4usHyh31rUf2DLGInT8RFYIReYXNSydgPY0V2LuWgl7A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     dev: true
 
