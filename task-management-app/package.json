@@ -1,8 +1,29 @@
 {
   "name": "task-management-app",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Modern task management application with React, TypeScript, and Vite",
+  "author": "Aly Zidan",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "typescript",
+    "vite",
+    "task-management",
+    "crud",
+    "tailwindcss",
+    "zustand",
+    "radix-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alyzidan/Adree_project/tree/main/task-management-app"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/task-management-app/issues"
+  },
+  "homepage": "https://github.com/alyzidan/Adree_project/tree/main/task-management-app#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc --project tsconfig.build.json && vite build",
