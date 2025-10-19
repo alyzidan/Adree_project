@@ -18,12 +18,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/alyzidan/Adree_project/tree/main/task-management-app"
+    "url": "https://github.com/alyzidan/Adree_project"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/task-management-app/issues"
+    "url": "https://github.com/alyzidan/Adree_project/issues"
   },
-  "homepage": "https://github.com/alyzidan/Adree_project/tree/main/task-management-app#readme",
+  "homepage": "https://github.com/alyzidan/Adree_project/blob/main/README.md",
   "scripts": {
     "dev": "vite",
     "build": "tsc --project tsconfig.build.json && vite build",
