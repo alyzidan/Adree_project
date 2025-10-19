@@ -1,50 +1,64 @@
-# Task Management App
+# Task Management Application
 
-A modern, production-ready task management application built with React, TypeScript, and TailwindCSS.
-presented to Adree.corb
+A modern, production-ready task management application built with React, TypeScript, and Vite. Features comprehensive CRUD operations, advanced filtering, real-time search, and responsive design.
 
-## 🚀 Features
+## Features
 
-- **Tasks CRUD** - Create, read, update, and delete tasks
-- **Dashboard** - Visual metrics and analytics
-- **Design System** - Reusable component library with Storybook
-- **Search & Filter** - Find tasks quickly
-- **Responsive** - Mobile-first design
-- **Accessible** - WCAG 2.1 compliant
-- **Modern Stack** - React 18, TypeScript, Vite, pnpm
+- Task Management: Create, read, update, and delete tasks with full validation
+- Advanced Filtering: Filter by status, category, and priority with debounced search
+- Responsive Design: Optimized for desktop, tablet, and mobile devices
+- Dashboard Analytics: Visual charts and metrics using Chart.js
+- Type Safety: Full TypeScript coverage with Zod schema validation
+- State Management: Zustand store with optimistic updates
+- Component Library: Radix UI primitives with custom styling
+- Testing: Comprehensive unit, integration, and E2E tests
+- Accessibility: WCAG compliant with proper ARIA labels
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Core
 
-- **Framework:** React 18.3
-- **Language:** TypeScript 5.3 (strict mode)
-- **Build Tool:** Vite 5.1
-- **Package Manager:** pnpm 8+
-- **Routing:** React Router v6
+- React 18.3
+- TypeScript 5.6
+- Vite 6.0
+- Tailwind CSS 3.4
 
-### Styling
+### State & Data
 
-- **CSS Framework:** TailwindCSS 3.4
-- **Icons:** Lucide React
+- Zustand 5.0 (state management)
+- React Hook Form 7.53 (forms)
+- Zod 3.23 (validation)
+- MSW 2.6 (API mocking)
+
+### UI Components
+
+- Radix UI (primitives)
+- Lucide React (icons)
+- Chart.js (analytics)
+
+### Testing
+
+- Vitest 2.1 (unit/integration)
+- React Testing Library 16.1
+- Cypress 13.17 (E2E)
 
 ### Development
 
-- **Linting:** ESLint 8
-- **Formatting:** Prettier 3
-- **CI/CD:** GitHub Actions
+- ESLint 9 & Prettier
+- Husky 9 (git hooks)
+- Storybook 8
 
-## 📦 Getting Started
+## Requirements
 
-### Prerequisites
+- Node.js 20.x, 22.x, or 23.x
+- pnpm 8.x or 9.x
 
-- **Node.js** 18+ or 20+
-- **pnpm** 8+ (install: `npm install -g pnpm`)
+## Getting Started
 
 ### Installation
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone <repository-url>
 cd task-management-app
 
@@ -55,195 +69,153 @@ pnpm install
 pnpm dev
 ```
 
-The app will be available at `http://localhost:5173`
+Application runs at `http://localhost:5173`
 
-## 📜 Available Scripts
+## Available Scripts
+
+### Development
 
 ```bash
-# Development
-pnpm dev          # Start dev server with hot reload
-pnpm build        # Build for production
+pnpm dev          # Start dev server
+pnpm build        # Production build
 pnpm preview      # Preview production build
-
-# Code Quality
-pnpm lint         # Run ESLint
-pnpm lint:fix     # Fix ESLint errors automatically
-pnpm format       # Format code with Prettier
-pnpm format:check # Check if code is formatted
+pnpm type-check   # TypeScript check
 ```
 
-# Project Structure
+### Testing
+
+```bash
+pnpm test              # Run unit tests (watch mode)
+pnpm test:run          # Run tests once
+pnpm test:coverage     # Generate coverage report
+pnpm test:e2e          # Run E2E tests (headless)
+pnpm test:e2e:open     # Open Cypress UI
+```
+
+### Code Quality
+
+```bash
+pnpm lint         # Run ESLint
+pnpm lint:fix     # Fix ESLint errors
+pnpm format       # Format with Prettier
+```
+
+### Storybook
+
+```bash
+pnpm storybook         # Start Storybook
+pnpm build-storybook   # Build Storybook
+```
+
+## Project Structure
 
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── ui/             # Design system primitives (Button, Input, etc.)
-│   ├── layout/         # Layout components (Header, Container, etc.)
-│   └── shared/         # Shared components (Loading, Error, etc.)
-├── features/           # Feature-based modules
-│   ├── tasks/          # Task management
-│   │   ├── components/ # Task-specific components
-│   │   └── hooks/      # Task-related hooks
-│   └── dashboard/      # Dashboard & analytics
-│       ├── components/ # Dashboard components
-│       └── hooks/      # Dashboard hooks
-├── lib/                # Utilities & helpers
-│   ├── constants.ts    # App constants
-│   └── utils.ts        # Utility functions
-├── mocks/              # Mock API (MSW)
-├── styles/             # Global styles & Tailwind config
-│   └── index.css       # Main CSS file
-├── routes.tsx          # Route configuration
-├── App.tsx             # Main app component
-└── main.tsx            # Entry point
-```
-
-## 🎯 Development Roadmap
-
-- [x] Project setup & configuration
-- [x] TailwindCSS v3.4 integration
-- [x] Routing with lazy loading
-- [x] Layout components
-- [x] CI/CD pipeline
-- [x] Design system components
-- [x] State management (Zustand)
-- [x] Mock API (MSW)
-- [x] Tasks CRUD functionality
-- [ ] Dashboard & charts
-- [ ] Testing (Vitest + Cypress)
-- [ ] Storybook documentation
-
-## State Management
-
-### Zustand Store
-
-- **Location:** `src/features/tasks/store.ts`
-- **Features:**
-  - Centralized state for tasks
-  - CRUD operations
-  - Filtering, sorting, pagination
-  - Optimistic updates
-  - Error handling
-  - DevTools integration
-
-### Custom Hooks
-
-- `useTasks()` - Main hook for fetching and managing tasks
-- `useTaskFilters()` - Debounced search and filter management
-- `useTaskMutations()` - CRUD operations with toast notifications
-
-### Mock API (MSW)
-
-- **Location:** `src/mocks/`
-- Mock Service Worker intercepts HTTP requests
-- 30 sample tasks with realistic data
-- Simulates network delay (500ms)
-- Full CRUD support with in-memory storage
-
-## Tasks CRUD Implementation
-
-### Components Structure
-
-```
-src/features/tasks/
 ├── components/
-│   ├── TaskList.tsx          # Main list container
-│   ├── TaskTable.tsx         # Desktop table view
-│   ├── TaskCards.tsx         # Mobile cards view
-│   ├── TaskForm.tsx          # Form with validation
-│   ├── TaskModal.tsx         # Create/Edit modal
-│   ├── TaskSearch.tsx        # Debounced search
-│   ├── TaskFilters.tsx       # Status/Category/Priority filters
-│   ├── TaskSort.tsx          # Sorting controls
-│   ├── TaskPagination.tsx    # Pagination controls
-│   └── DeleteTaskDialog.tsx  # Delete confirmation
-├── hooks/
-│   ├── useTasks.ts           # Main data hook
-│   ├── useTaskFilters.ts     # Filter management
-│   └── useTaskMutations.ts   # CRUD operations
-├── store.ts                  # Zustand state management
-├── api.ts                    # API service layer
-├── types.ts                  # TypeScript types
-└── schema.ts                 # Zod validation schemas
+│   ├── layout/          # Layout components
+│   ├── shared/          # Shared components
+│   └── ui/              # UI component library
+├── features/
+│   ├── dashboard/       # Dashboard feature
+│   └── tasks/           # Tasks feature
+│       ├── components/  # Task components
+│       ├── hooks/       # Custom hooks
+│       ├── api.ts       # API service
+│       ├── store.ts     # Zustand store
+│       └── types.ts     # TypeScript types
+├── lib/                 # Utilities and constants
+├── mocks/               # MSW handlers
+├── styles/              # Global styles
+└── test/                # Test utilities
 ```
 
-### Features Implemented
+## Testing
 
-# CRUD Operations
+### Coverage Targets
 
-- **Create**: Modal form with validation
-- **Read**: Paginated list with filters
-- **Update**: Inline edit via modal
-- **Delete**: Confirmation dialog
+- Lines: 60%
+- Functions: 60%
+- Branches: 60%
+- Statements: 60%
 
-# Filtering & Search
+### Test Types
 
-- Debounced search (300ms)
-- Filter by status, category, priority
-- Reset filters button
-- Active filter indicators
+- Unit Tests: Utility functions and hooks
+- Component Tests: UI components with React Testing Library
+- Integration Tests: Feature workflows and forms
+- E2E Tests: Complete user journeys with Cypress
 
-# Sorting
+View detailed testing documentation in [TESTING.md](./TESTING.md)
 
-- Sort by: date, title, due date, hours, priority
-- Toggle ascending/descending order
-- Visual sort indicators
+## Git Hooks
 
-# Pagination
+Pre-configured Husky hooks ensure code quality:
 
-- Configurable page size (5, 10, 20, 50)
-- Page navigation controls
-- Results counter
+- pre-commit: Runs ESLint and Prettier on staged files
+- commit-msg: Validates commit message format (Conventional Commits)
+- pre-push: Runs type check and all tests
 
-# Responsive Design
+## CI/CD
 
-- **Desktop**: Full table view with all columns
-- **Mobile**: Card-based layout
-- Collapsible filters on mobile
-- Touch-friendly buttons
+GitHub Actions workflows automatically run on push and pull requests:
 
-# Form Validation
+- Lint checking
+- Type checking
+- Unit and integration tests
+- E2E tests
+- Build verification
+- Coverage reporting
 
-- React Hook Form + Zod schemas
-- Real-time validation
-- Inline error messages
-- Required field indicators
+## Browser Support
 
-# User Feedback
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
 
-- Toast notifications for all actions
-- Loading states during operations
-- Empty states with helpful messages
-- Error handling with retry options
+## Performance
 
-# Accessibility
+Production build optimization:
 
-- Keyboard navigation support
-- ARIA labels on interactive elements
-- Focus management in modals
-- Screen reader friendly
+- Code splitting by route and vendor
+- Tree shaking
+- Minification with Terser
+- Gzip compression
+- Asset caching
 
-# Code Quality
+## Deployment
 
-This project enforces strict code quality standards:
+### Vercel
 
-- **TypeScript strict mode** enabled
-- **ESLint** with React, TypeScript, and a11y rules
-- **Prettier** with Tailwind class sorting
-- **Pre-commit hooks** (coming soon)
-- **CI/CD** checks on every push
+```bash
+vercel --prod
+```
 
-## 🤝 Contributing
+### Netlify
+
+```bash
+netlify deploy --prod
+```
+
+### Docker
+
+```bash
+docker build -t task-manager .
+docker run -p 80:80 task-manager
+```
+
+See [PRODUCTION.md](./PRODUCTION.md) for detailed deployment guide.
+
+## Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit changes (`git commit -m 'feat: add feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-## 📝 License
+Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) specification.
 
-MIT
+## License
 
-## 👤 Author
-
-Frontend Lead Assessment Project presented to Aly Zidan.
+MIT License - see [LICENSE](./LICENSE) file for details.
