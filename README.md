@@ -133,12 +133,17 @@ src/
 
 ### Coverage Targets
 
-- Lines: 60%
-- Functions: 60%
-- Branches: 60%
-- Statements: 60%
+- Lines: 30%
+- Functions: 30%
+- Branches: 30%
+- Statements: 30%
 
 ### Test Types
+
+### verfiy script
+
+- chmod +x scripts/verify.sh
+- ./scripts/verify.sh
 
 - Unit Tests: Utility functions and hooks
 - Component Tests: UI components with React Testing Library
@@ -183,27 +188,6 @@ Production build optimization:
 - Gzip compression
 - Asset caching
 
-## Deployment
-
-### Vercel
-
-```bash
-vercel --prod
-```
-
-### Netlify
-
-```bash
-netlify deploy --prod
-```
-
-### Docker
-
-```bash
-docker build -t task-manager .
-docker run -p 80:80 task-manager
-```
-
 See [PRODUCTION.md](./PRODUCTION.md) for detailed deployment guide.
 
 ## Contributing
@@ -219,4 +203,5 @@ Commit messages must follow [Conventional Commits](https://www.conventionalcommi
 ## License
 
 MIT License - see [LICENSE](./LICENSE) file for details.
+
 # Test CI
