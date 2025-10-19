@@ -1,4 +1,4 @@
-import { Task } from '@/features/tasks/types'
+import { Task, TaskCategory, TaskStatus } from '@/features/tasks/types'
 import { TASK_STATUS } from '@/lib/constants'
 
 export interface DashboardMetrics {
@@ -12,12 +12,12 @@ export interface DashboardMetrics {
 }
 
 export interface CategoryData {
-  category: string
+  category: TaskCategory
   count: number
 }
 
 export interface StatusData {
-  status: string
+  status: TaskStatus
   count: number
 }
 
@@ -60,7 +60,7 @@ export function calculateMetrics(tasks: Task[]): DashboardMetrics {
 }
 
 export function getTasksByCategory(tasks: Task[]): CategoryData[] {
-  const categoryMap = new Map<string, number>()
+  const categoryMap = new Map<TaskCategory, number>()
 
   tasks.forEach((task) => {
     const count = categoryMap.get(task.category) || 0
@@ -73,7 +73,7 @@ export function getTasksByCategory(tasks: Task[]): CategoryData[] {
 }
 
 export function getTasksByStatus(tasks: Task[]): StatusData[] {
-  const statusMap = new Map<string, number>()
+  const statusMap = new Map<TaskStatus, number>()
 
   tasks.forEach((task) => {
     const count = statusMap.get(task.status) || 0
