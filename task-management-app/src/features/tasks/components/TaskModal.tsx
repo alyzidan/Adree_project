@@ -4,7 +4,6 @@ import {
   ModalTitle,
   ModalDescription,
   ModalBody,
-  ModalFooter,
 } from '../../../components/ui/modal'
 import TaskForm from './TaskForm'
 import { useTaskMutations } from '../hooks'

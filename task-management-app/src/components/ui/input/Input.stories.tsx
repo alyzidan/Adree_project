@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Search, Mail, Lock, User, AlertCircle } from 'lucide-react'
+import { Search, Mail, Lock, AlertCircle } from 'lucide-react'
 import { useState } from 'react'
-import { prefault, z } from 'zod'
+import { z } from 'zod'
 import Input from './Input'
 import React from 'react'
 

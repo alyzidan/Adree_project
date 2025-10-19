@@ -20,12 +20,12 @@ function TestPage() {
     fetchTasks()
   }, [fetchTasks])
 
+  // local Helper log functions
   const log = (message: string) => {
     setTestLog((prev) => [
       ...prev,
       `${new Date().toLocaleTimeString()}: ${message}`,
     ])
-    console.log(message)
   }
 
   const handleCreateTest = async () => {

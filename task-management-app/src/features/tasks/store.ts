@@ -85,7 +85,7 @@ export const useTasksStore = create<TasksState>()(
 
         // Prevent duplicate requests
         if (state.isLoading) {
-          console.log('⏸️ Already loading, skipping duplicate request')
+          console.log('⏸Already loading, skipping duplicate request')
           return
         }
 
@@ -252,5 +252,9 @@ export const useTasksStore = create<TasksState>()(
 )
 
 if (process.env.NODE_ENV === 'development') {
-  (window as any).tasksStore = useTasksStore
+  interface WindowWithStore extends Window {
+    tasksStore: typeof useTasksStore
+  }
+  // eslint-disable-next-line @typescript-eslint/no-extra-semi
+  (window as unknown as WindowWithStore).tasksStore = useTasksStore
 }

@@ -1,4 +1,4 @@
-import { ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react'
+import { ArrowUp, ArrowDown } from 'lucide-react'
 import Select from '@/components/ui/select/Select'
 import Button from '@/components/ui/button/Button'
 import { useTasks } from '../hooks'

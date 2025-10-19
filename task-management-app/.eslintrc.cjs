@@ -42,6 +42,12 @@ module.exports = {
       },
     },
     {
+      files: ['src/test/utils.tsx'],
+      rules: {
+        'react-refresh/only-export-components': 'off',
+      },
+    },
+    {
       // Allowing dev files
       files: [
         'src/lib/devTools.ts',
@@ -49,10 +55,11 @@ module.exports = {
         'src/test/**/*.tsx',
         '**/*.test.ts',
         '**/*.test.tsx',
+        'src/features/tasks/store.ts',
       ],
       rules: {
         'no-console': 'off',
-        '@typescript-eslint/no-explicit-any': 'warn',
+        '@typescript-eslint/no-explicit-any': 'off',
       },
     },
   ],

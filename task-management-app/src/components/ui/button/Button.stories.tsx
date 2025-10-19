@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Plus, Trash2, ArrowRight } from 'lucide-react'
+import { Plus, ArrowRight } from 'lucide-react'
 import Button from './Button'
 
 const meta = {
