@@ -42,7 +42,8 @@
     "test:e2e:open": "cypress open",
     "test:e2e:headed": "cypress run --headed",
     "type-check": "tsc --noEmit --project tsconfig.build.json",
-    "type-check:all": "tsc --noEmit"
+    "type-check:all": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -96,7 +97,9 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "eslint-plugin-storybook": "^0.6.15",
     "globals": "^16.4.0",
+    "husky": "^9.1.7",
     "jsdom": "^27.0.1",
+    "lint-staged": "^16.2.5",
     "playwright": "^1.56.1",
     "postcss": "^8.5.6",
     "prettier": "^3.2.5",
@@ -113,6 +116,12 @@
   "msw": {
     "workerDirectory": [
       "public"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   }
 }
